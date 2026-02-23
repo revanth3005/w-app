@@ -1,0 +1,928 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   Royal Indian Wedding — Romantic Luxe Premium Theme
+   ═══════════════════════════════════════════════════════ */
+
+@theme {
+  --color-crimson: #8b2040;
+  --color-crimson-light: #a8385a;
+  --color-crimson-dark: #5a102a;
+  --color-gold: #d4af37;
+  --color-gold-light: #f0d975;
+  --color-gold-dark: #8b6f2a;
+  --color-cream: #f0e6d0;
+  --color-cream-dark: #e0d4b8;
+  --color-leaf-green: #1b6b4a;
+  --color-sage: #5b8e6f;
+  --color-blush: #d4a8ac;
+  --color-rose: #a86070;
+  --color-rose-gold: #9e5060;
+  --color-turmeric: #d4af37;
+  --color-dark-bg: #06040a;
+  --color-dark-surface: #100c12;
+  --color-warm: #181218;
+
+  --font-display: "Playfair Display", serif;
+  --font-body: "Lato", sans-serif;
+  --font-telugu: "Noto Sans Telugu", sans-serif;
+  --font-script: "Great Vibes", cursive;
+}
+
+/* ═══ Base ═══ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-dark-bg);
+  color: var(--color-cream);
+  overflow-x: hidden;
+  line-height: 1.75;
+  background-image: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(88, 30, 60, 0.04) 0%,
+    transparent 50%
+  );
+}
+
+.telugu {
+  font-family: var(--font-telugu);
+}
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* ═══ Gold Shimmer Text — Romantic Luxe ═══ */
+
+.gold-shimmer {
+  background: linear-gradient(
+    105deg,
+    #6b5520 0%,
+    #8b6f2a 10%,
+    #d4af37 22%,
+    #f5e6a3 38%,
+    #fffdf0 50%,
+    #f0d975 58%,
+    #d4af37 72%,
+    #8b6f2a 88%,
+    #6b5520 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.25))
+    drop-shadow(0 0 35px rgba(212, 175, 55, 0.1))
+    drop-shadow(0 0 60px rgba(142, 60, 82, 0.04));
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 300% center;
+  }
+  100% {
+    background-position: -300% center;
+  }
+}
+
+/* ═══ Rose-Gold Shimmer — for romantic accents ═══ */
+
+.rose-gold-shimmer {
+  background: linear-gradient(
+    105deg,
+    #6a3040 0%,
+    #8e3855 20%,
+    #c8929b 42%,
+    #e8c8cc 50%,
+    #a86070 65%,
+    #6a3040 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(142, 56, 85, 0.15));
+}
+
+/* ═══ Heartbeat Pulse ═══ */
+
+.heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.12);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.08);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+/* ═══ Gentle Float ═══ */
+
+.float-gentle {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+@keyframes floatGentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ═══ Romantic Warm Glow ═══ */
+
+.romantic-glow {
+  animation: romanticGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes romanticGlow {
+  0% {
+    box-shadow:
+      0 0 20px rgba(142, 56, 85, 0.12),
+      0 0 40px rgba(212, 175, 55, 0.06);
+  }
+  100% {
+    box-shadow:
+      0 0 40px rgba(142, 56, 85, 0.22),
+      0 0 70px rgba(212, 175, 55, 0.1),
+      0 0 100px rgba(88, 30, 60, 0.06);
+  }
+}
+
+/* ═══ Sparkle twinkle ═══ */
+
+.sparkle {
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* ═══ Gold Gradient Border ═══ */
+
+.gold-border-gradient {
+  position: relative;
+}
+.gold-border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.4),
+    rgba(142, 56, 85, 0.08),
+    rgba(212, 175, 55, 0.4)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ═══ Glass Cards ═══ */
+
+.glass {
+  background: rgba(16, 12, 18, 0.75);
+  backdrop-filter: blur(30px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 1.25rem;
+}
+
+.glass-card {
+  background: linear-gradient(
+    155deg,
+    rgba(24, 18, 24, 0.95),
+    rgba(6, 4, 10, 0.98)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(212, 175, 55, 0.06) inset,
+    0 0 80px rgba(142, 56, 85, 0.015);
+}
+
+/* ═══ Glow Pulse — with rose warmth ═══ */
+
+.glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 25px rgba(212, 175, 55, 0.18),
+      0 0 8px rgba(142, 56, 85, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 45px rgba(212, 175, 55, 0.35),
+      0 0 90px rgba(142, 56, 85, 0.12),
+      0 0 15px rgba(212, 175, 55, 0.15);
+  }
+}
+
+/* ═══ Floating Petals — softer, more romantic ═══ */
+
+.petal {
+  position: fixed;
+  pointer-events: none;
+  z-index: 50;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-8vh) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(30vh) rotate(120deg) translateX(30px);
+    opacity: 0.35;
+  }
+  60% {
+    transform: translateY(60vh) rotate(240deg) translateX(-15px);
+    opacity: 0.2;
+  }
+  85% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateY(110vh) rotate(400deg) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* ═══ Gold Particles — warmer ═══ */
+
+.particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.85),
+    rgba(142, 56, 85, 0.3),
+    transparent
+  );
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  80% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ═══ Ornate Divider ═══ */
+
+.line-gold {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.3),
+    transparent
+  );
+}
+
+/* ═══ Section Luxury Layer — romantic warmth ═══ */
+
+.section-ornate {
+  position: relative;
+}
+.section-ornate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 15% 0%,
+      rgba(212, 175, 55, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 85% 100%,
+      rgba(142, 56, 85, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(88, 30, 60, 0.02) 0%,
+      transparent 40%
+    );
+  pointer-events: none;
+}
+
+/* ═══ Curtain ═══ */
+
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 47%;
+}
+
+@media (min-width: 640px) {
+  .curtain-panel {
+    width: 50%;
+  }
+}
+
+.curtain-left {
+  left: 0;
+  background:
+    /* Fabric fold highlights & shadows — creates drape effect */
+    repeating-linear-gradient(
+      90deg,
+      rgba(70, 14, 28, 0) 0%,
+      rgba(100, 25, 40, 0.18) 3%,
+      rgba(50, 10, 22, 0) 6%,
+      rgba(35, 6, 16, 0.22) 9%,
+      rgba(80, 18, 32, 0.12) 12%,
+      rgba(110, 30, 45, 0.2) 14%,
+      rgba(45, 10, 20, 0) 17%,
+      rgba(30, 5, 14, 0.25) 20%,
+      rgba(80, 20, 34, 0.1) 23%,
+      rgba(100, 25, 40, 0.18) 26%,
+      rgba(42, 8, 18, 0) 29%,
+      rgba(28, 4, 12, 0.28) 32%,
+      rgba(90, 22, 36, 0.14) 35%,
+      rgba(60, 12, 24, 0) 38%,
+      rgba(105, 28, 42, 0.2) 41%,
+      rgba(38, 7, 16, 0.15) 44%,
+      rgba(30, 5, 14, 0.3) 47%,
+      rgba(85, 20, 34, 0.12) 50%
+    ),
+    /* Base velvet fabric gradient */
+    linear-gradient(
+        135deg,
+        #3a0e1e 0%,
+        #280a16 25%,
+        #1c060e 50%,
+        #280a16 75%,
+        #3a0e1e 100%
+      );
+  border-right: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow:
+    inset -40px 0 70px rgba(0, 0, 0, 0.6),
+    inset 20px 0 50px rgba(139, 32, 64, 0.08),
+    inset -8px 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.curtain-right {
+  right: 0;
+  background:
+    /* Fabric fold highlights & shadows — mirrored drape */
+    repeating-linear-gradient(
+      90deg,
+      rgba(60, 12, 24, 0) 0%,
+      rgba(30, 5, 14, 0.28) 3%,
+      rgba(90, 22, 36, 0.16) 6%,
+      rgba(50, 10, 22, 0) 9%,
+      rgba(105, 28, 42, 0.2) 12%,
+      rgba(38, 7, 16, 0.12) 15%,
+      rgba(30, 5, 14, 0.25) 18%,
+      rgba(80, 18, 32, 0.14) 21%,
+      rgba(100, 25, 40, 0.08) 24%,
+      rgba(42, 8, 18, 0) 27%,
+      rgba(28, 4, 12, 0.26) 30%,
+      rgba(90, 22, 36, 0.18) 33%,
+      rgba(70, 14, 28, 0) 36%,
+      rgba(110, 30, 45, 0.2) 39%,
+      rgba(45, 10, 20, 0.1) 42%,
+      rgba(35, 6, 16, 0.3) 45%,
+      rgba(85, 20, 34, 0.14) 48%,
+      rgba(55, 10, 22, 0) 50%
+    ),
+    /* Base velvet fabric gradient */
+    linear-gradient(
+        225deg,
+        #3a0e1e 0%,
+        #280a16 25%,
+        #1c060e 50%,
+        #280a16 75%,
+        #3a0e1e 100%
+      );
+  border-left: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow:
+    inset 40px 0 70px rgba(0, 0, 0, 0.6),
+    inset -20px 0 50px rgba(139, 32, 64, 0.08),
+    inset 8px 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.rope-ring {
+  background: conic-gradient(
+    from 0deg,
+    rgba(212, 175, 55, 0.6) 0deg,
+    rgba(154, 123, 46, 0.3) 30deg,
+    rgba(212, 175, 55, 0.7) 60deg,
+    rgba(154, 123, 46, 0.3) 90deg,
+    rgba(212, 175, 55, 0.6) 120deg,
+    rgba(154, 123, 46, 0.3) 150deg,
+    rgba(212, 175, 55, 0.7) 180deg,
+    rgba(154, 123, 46, 0.3) 210deg,
+    rgba(212, 175, 55, 0.6) 240deg,
+    rgba(154, 123, 46, 0.3) 270deg,
+    rgba(212, 175, 55, 0.7) 300deg,
+    rgba(154, 123, 46, 0.3) 330deg,
+    rgba(212, 175, 55, 0.6) 360deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3.5px),
+    #000 calc(100% - 3.5px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3.5px),
+    #000 calc(100% - 3.5px)
+  );
+  border-radius: 50%;
+}
+
+.rope-knot {
+  animation: ropeRotate 10s linear infinite;
+}
+
+@keyframes ropeRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ═══ Photo Frames — Gold Circle with Rose Warmth ═══ */
+
+.photo-frame-gold {
+  position: relative;
+  border-radius: 50%;
+}
+.photo-frame-gold::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 45deg,
+    rgba(212, 175, 55, 0.75),
+    rgba(240, 217, 117, 0.95),
+    rgba(142, 56, 85, 0.35),
+    rgba(240, 217, 117, 0.95),
+    rgba(212, 175, 55, 0.75)
+  );
+  z-index: -1;
+}
+.photo-frame-gold::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow:
+    0 0 45px rgba(212, 175, 55, 0.15),
+    0 0 90px rgba(142, 56, 85, 0.08),
+    0 0 130px rgba(212, 175, 55, 0.05);
+  z-index: -2;
+}
+
+/* ═══ Scrollbar ═══ */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #06040a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #9a7b2e, #d4af37);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.25);
+  color: #f0e6d0;
+}
+
+/* ═══ Premium Button — Romantic Luxe ═══ */
+
+.btn-premium {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(212, 175, 55, 0.9);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1),
+    rgba(142, 56, 85, 0.05),
+    rgba(212, 175, 55, 0.04)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  overflow: hidden;
+  box-shadow:
+    0 4px 25px rgba(212, 175, 55, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 40px rgba(212, 175, 55, 0.03),
+    0 0 60px rgba(142, 56, 85, 0.02);
+}
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent,
+    rgba(212, 175, 55, 0.12),
+    rgba(142, 56, 85, 0.05),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.btn-premium:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 40px rgba(212, 175, 55, 0.18),
+    0 0 1px rgba(212, 175, 55, 0.4),
+    0 0 60px rgba(142, 56, 85, 0.08);
+  border-color: rgba(212, 175, 55, 0.4);
+  color: rgba(212, 175, 55, 1);
+}
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+/* ═══ Event Card Premium — Romantic Depth ═══ */
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    165deg,
+    rgba(20, 14, 20, 0.97),
+    rgba(10, 7, 12, 0.99)
+  );
+  border: none;
+  box-shadow:
+    0 8px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 0.5px rgba(212, 175, 55, 0.07) inset,
+    0 1px 0 rgba(212, 175, 55, 0.07) inset,
+    0 0 100px rgba(142, 56, 85, 0.02);
+  transition:
+    box-shadow 0.6s,
+    transform 0.6s;
+}
+
+/* Animated shimmer sweep across card */
+.event-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.03),
+    rgba(255, 248, 231, 0.04),
+    rgba(212, 175, 55, 0.03),
+    transparent
+  );
+  animation: cardSweep 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes cardSweep {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 200%;
+  }
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 0.5px rgba(212, 175, 55, 0.2) inset,
+    0 1px 0 rgba(212, 175, 55, 0.18) inset,
+    0 0 80px rgba(212, 175, 55, 0.05),
+    0 0 120px rgba(142, 56, 85, 0.04);
+}
+
+/* ═══ Countdown Premium Boxes — Clean Luxe ═══ */
+
+.countdown-box {
+  position: relative;
+  padding: 1.125rem 1.25rem;
+  min-width: 72px;
+  text-align: center;
+  border-radius: 1.125rem;
+  background: linear-gradient(
+    165deg,
+    rgba(212, 175, 55, 0.07),
+    rgba(10, 7, 12, 0.95),
+    rgba(212, 175, 55, 0.02)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(212, 175, 55, 0.1),
+    0 0 50px rgba(212, 175, 55, 0.025),
+    0 0 80px rgba(142, 56, 85, 0.015);
+  animation: countdownPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes countdownPulse {
+  0% {
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(212, 175, 55, 0.1),
+      0 0 50px rgba(212, 175, 55, 0.025);
+  }
+  100% {
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(212, 175, 55, 0.14),
+      0 0 60px rgba(212, 175, 55, 0.05),
+      0 0 35px rgba(142, 56, 85, 0.025);
+  }
+}
+
+@media (min-width: 640px) {
+  .countdown-box {
+    padding: 1.375rem 1.625rem;
+    min-width: 88px;
+  }
+}
+
+/* ═══ Info Row — romantic warm elegance ═══ */
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.125rem 1.25rem;
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.04),
+    rgba(142, 56, 85, 0.018),
+    rgba(212, 175, 55, 0.015)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.09);
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.info-row:hover {
+  border-color: rgba(212, 175, 55, 0.18);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.065),
+    rgba(142, 56, 85, 0.03),
+    rgba(212, 175, 55, 0.02)
+  );
+  transform: translateX(4px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* ═══ Romantic section separator ═══ */
+
+.romantic-separator {
+  position: relative;
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(142, 56, 85, 0.18),
+    rgba(212, 175, 55, 0.22),
+    rgba(142, 56, 85, 0.18),
+    transparent
+  );
+}
+.romantic-separator::after {
+  content: "♥";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  color: rgba(142, 56, 85, 0.35);
+  background: #06040a;
+  padding: 0 8px;
+}
+
+/* ═══ Animated Rotating Border Gradient ═══ */
+
+@keyframes borderRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ═══ Mandala Rotate ═══ */
+
+@keyframes mandalaRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.mandala-spin {
+  animation: mandalaRotate 120s linear infinite;
+}
+
+/* ═══ Breathing ambient glow ═══ */
+
+@keyframes breatheGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}
+
+.breathe-glow {
+  animation: breatheGlow 5s ease-in-out infinite;
+}
+
+/* ═══ Twinkle Stars ═══ */
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ═══ Shine Sweep ═══ */
+
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-200%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(400%) skewX(-20deg);
+  }
+}
+
+/* ═══ Family card animated border ═══ */
+
+.family-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.family-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(212, 175, 55, 0.3),
+    rgba(142, 56, 85, 0.12),
+    rgba(212, 175, 55, 0.06),
+    rgba(142, 56, 85, 0.12),
+    rgba(212, 175, 55, 0.3)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderRotate 6s ease infinite;
+  background-size: 400% 400%;
+}
+
+.family-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 50px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(212, 175, 55, 0.04);
+}
+
+/* ═══ Section separator glow line ═══ */
+
+.glow-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.45),
+    rgba(142, 56, 85, 0.3),
+    rgba(212, 175, 55, 0.45),
+    transparent
+  );
+  box-shadow:
+    0 0 12px rgba(212, 175, 55, 0.18),
+    0 0 35px rgba(142, 56, 85, 0.1);
+}
