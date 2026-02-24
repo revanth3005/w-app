@@ -844,6 +844,26 @@ body {
   animation: breatheGlow 5s ease-in-out infinite;
 }
 
+/* ═══ Mobile performance: reduce heavy animations ═══ */
+
+@media (max-width: 640px) {
+  .breathe-glow {
+    animation: none;
+    opacity: 0.45;
+  }
+
+  .glow-pulse {
+    animation: none;
+    box-shadow:
+      0 0 30px rgba(212, 175, 55, 0.22),
+      0 0 8px rgba(142, 56, 85, 0.1);
+  }
+
+  .mandala-spin {
+    display: none;
+  }
+}
+
 /* ═══ Twinkle Stars ═══ */
 
 @keyframes twinkle {
