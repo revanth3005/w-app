@@ -74,10 +74,10 @@ export const weddingConfig = {
       time: "8:00 PM",
       muhurtam: null,
       venue: {
-        name: "YSN Function Hall, Aler",
-        nameTelugu: "YSN ఫంక్షన్ హాల్, ఆలేరు",
+        name: "ANR Gardens, Aler",
+        nameTelugu: "ANR Gardens",
         address:
-          "YSN Function Hall, Aler, Yadadri Bhuvanagiri District, Telangana",
+          "ANR Gardens, Aler, Yadadri Bhuvanagiri District, Telangana",
         mapUrl: "https://maps.app.goo.gl/rqLLB749z2XA8UKR8",
         lat: 17.6012,
         lng: 78.5928,
@@ -110,7 +110,7 @@ export const weddingConfig = {
       time: "8:00 PM",
       muhurtam: null,
       venue: {
-        name: "VKR Convention Hall",
+        name: "VKR Convention Hall, Kalluru, Telangana",
         nameTelugu: "VKR కన్వెన్షన్ హాల్",
         address: "VKR Convention Hall, Telangana",
         mapUrl: "https://maps.app.goo.gl/LbRECjonkrE1KQdx7",
