@@ -9,7 +9,7 @@ export default function StageCurtains() {
     <div className="fixed inset-0 z-30 pointer-events-none overflow-hidden">
       {/* ─── Left gathered drape ─── */}
       <motion.div
-        className="absolute top-0 bottom-0 left-0 w-[10px] sm:w-[14px] md:w-[18px] lg:w-[22px]"
+        className="absolute top-0 bottom-0 left-0 w-[14px] sm:w-[20px] md:w-[26px] lg:w-[32px]"
         initial={{ x: "-100%", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -165,7 +165,7 @@ export default function StageCurtains() {
 
       {/* ─── Right gathered drape (mirrored) ─── */}
       <motion.div
-        className="absolute top-0 bottom-0 right-0 w-[10px] sm:w-[14px] md:w-[18px] lg:w-[22px]"
+        className="absolute top-0 bottom-0 right-0 w-[14px] sm:w-[20px] md:w-[26px] lg:w-[32px]"
         initial={{ x: "100%", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
