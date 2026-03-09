@@ -41,7 +41,7 @@ export default function Countdown({
           fill="rgba(142,56,85,0.18)"
         />
       </p>
-      <div className="flex justify-center items-center gap-3 sm:gap-4">
+      <div className="flex justify-center items-center gap-2.5 sm:gap-4">
         {units.map((u, i) => (
           <motion.div
             key={u.label}

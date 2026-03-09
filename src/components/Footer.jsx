@@ -8,6 +8,8 @@ import {
   FloralWreath,
 } from "./Decorations/FloralElements";
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
 export default function Footer() {
   const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const { bride, groom } = weddingConfig.couple;
@@ -35,7 +37,7 @@ export default function Footer() {
     <footer
       ref={ref}
       className="relative py-24 sm:py-32 overflow-hidden px-4 sm:px-6"
-      style={{ background: "linear-gradient(180deg, #06040A, #040208)" }}
+      style={{ background: "var(--theme-footer-bg)" }}
     >
       {/* Glowing section separator at top */}
       <div
@@ -43,36 +45,44 @@ export default function Footer() {
         style={{ height: "1px" }}
       />
 
-      {/* Ambient romantic glow — more dramatic */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse at 50% 40%, rgba(142,56,85,0.05) 0%, transparent 50%),
-            radial-gradient(circle at 50% 60%, rgba(212,175,55,0.035) 0%, transparent 40%)
-          `,
-        }}
-      />
+      {/* Ambient romantic glow — desktop only */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(ellipse at 50% 40%, rgba(142,56,85,0.05) 0%, transparent 50%),
+              radial-gradient(circle at 50% 60%, rgba(212,175,55,0.035) 0%, transparent 40%)
+            `,
+          }}
+        />
+      )}
 
-      {/* Breathing glow */}
-      <div
-        className="absolute inset-0 pointer-events-none breathe-glow"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(142,56,85,0.03) 0%, transparent 45%)",
-        }}
-      />
+      {/* Breathing glow — desktop only */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none breathe-glow"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(142,56,85,0.03) 0%, transparent 45%)",
+          }}
+        />
+      )}
 
-      {/* Floral corners */}
-      <FloralCorner
-        className="absolute top-4 left-0 pointer-events-none opacity-18"
-        size={70}
-      />
-      <FloralCorner
-        className="absolute top-4 right-0 pointer-events-none opacity-18"
-        size={70}
-        flip
-      />
+      {/* Floral corners — desktop only */}
+      {!isMobile && (
+        <>
+          <FloralCorner
+            className="absolute top-4 left-0 pointer-events-none opacity-18"
+            size={70}
+          />
+          <FloralCorner
+            className="absolute top-4 right-0 pointer-events-none opacity-18"
+            size={70}
+            flip
+          />
+        </>
+      )}
 
       {/* Top divider */}
       <div
@@ -108,7 +118,14 @@ export default function Footer() {
         >
           {/* Wreath decoration */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15 pointer-events-none">
-            <FloralWreath size={220} />
+            {isMobile ? (
+              <Heart
+                className="w-4 h-4 text-rose-gold/55"
+                fill="rgba(142,56,85,0.45)"
+              />
+            ) : (
+              <FloralWreath size={220} />
+            )}
           </div>
           <div className="relative py-10 px-14">
             <p className="font-script text-3xl sm:text-4xl md:text-[2.75rem] gold-shimmer mb-3">
@@ -116,15 +133,22 @@ export default function Footer() {
             </p>
             <div className="flex items-center justify-center gap-4 my-3">
               <div className="h-px w-12 bg-gradient-to-r from-transparent via-rose-gold/30 to-gold/30" />
-              <motion.div
-                animate={{ scale: [1, 1.15, 1] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              >
+              {isMobile ? (
                 <Heart
                   className="w-4 h-4 text-rose-gold/55"
                   fill="rgba(142,56,85,0.45)"
                 />
-              </motion.div>
+              ) : (
+                <motion.div
+                  animate={{ scale: [1, 1.15, 1] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
+                >
+                  <Heart
+                    className="w-4 h-4 text-rose-gold/55"
+                    fill="rgba(142,56,85,0.45)"
+                  />
+                </motion.div>
+              )}
               <div className="h-px w-12 bg-gradient-to-l from-transparent via-rose-gold/30 to-gold/30" />
             </div>
             <p className="font-script text-3xl sm:text-4xl md:text-[2.75rem] gold-shimmer">
