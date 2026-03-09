@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Navigation } from "lucide-react";
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
 export default function EventCard({ event }) {
   const {
     title,
@@ -26,14 +28,16 @@ export default function EventCard({ event }) {
         }}
       />
 
-      {/* Ambient glow inside card — more dramatic */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-40 pointer-events-none breathe-glow"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(212,175,55,0.05) 0%, transparent 70%)",
-        }}
-      />
+      {/* Ambient glow inside card — desktop only */}
+      {!isMobile && (
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-40 pointer-events-none breathe-glow"
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(212,175,55,0.05) 0%, transparent 70%)",
+          }}
+        />
+      )}
 
       <div className="p-5 sm:p-7 lg:p-9">
         {/* Title row — emoji + name */}

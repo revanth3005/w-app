@@ -5,7 +5,17 @@ import Countdown from "./Countdown";
 import { FloralCorner, OrnamentDivider } from "../Decorations/FloralElements";
 
 const { couple, events } = weddingConfig;
-const firstEvent = events.engagement;
+
+/* Pick the next upcoming event to count down to */
+function getNextEvent() {
+  const now = new Date();
+  const ordered = [events.engagement, events.marriage, events.reception];
+  for (const evt of ordered) {
+    if (new Date(evt.date) > now) return evt;
+  }
+  // All events passed — show the last one (will display "Celebration Has Begun")
+  return ordered[ordered.length - 1];
+}
 
 /* Tiny heart SVG for decorative use */
 function SmallHeart({ className = "", style = {} }) {
@@ -23,149 +33,86 @@ function SmallHeart({ className = "", style = {} }) {
 }
 
 export default function HeroSection() {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+  const nextEvent = getNextEvent();
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6"
-      style={{
-        background: `
-          radial-gradient(ellipse at 50% 25%, rgba(24,18,24,1) 0%, rgba(6,4,10,1) 65%),
-          linear-gradient(180deg, #06040A 0%, #100C12 50%, #06040A 100%)
-        `,
-      }}
+      style={{ background: "var(--theme-hero-bg)" }}
     >
-      {/* ══ Deep ambient glow layers ══ */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-          radial-gradient(ellipse at 50% 8%, rgba(139,32,64,0.09) 0%, transparent 35%),
-          radial-gradient(circle at 50% 35%, rgba(212,175,55,0.09) 0%, transparent 30%),
-          radial-gradient(ellipse at 25% 55%, rgba(142,56,85,0.04) 0%, transparent 28%),
-          radial-gradient(ellipse at 75% 55%, rgba(142,56,85,0.04) 0%, transparent 28%),
-          radial-gradient(circle at 50% 75%, rgba(212,175,55,0.03) 0%, transparent 22%),
-          radial-gradient(ellipse at 50% 50%, rgba(88,30,60,0.025) 0%, transparent 35%)
-        `,
-        }}
-      />
+      {/* ══ Deep ambient glow layers — simplified on mobile ══ */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+            radial-gradient(ellipse at 50% 8%, rgba(139,32,64,0.09) 0%, transparent 35%),
+            radial-gradient(circle at 50% 35%, rgba(212,175,55,0.09) 0%, transparent 30%),
+            radial-gradient(ellipse at 25% 55%, rgba(142,56,85,0.04) 0%, transparent 28%),
+            radial-gradient(ellipse at 75% 55%, rgba(142,56,85,0.04) 0%, transparent 28%),
+            radial-gradient(circle at 50% 75%, rgba(212,175,55,0.03) 0%, transparent 22%),
+            radial-gradient(ellipse at 50% 50%, rgba(88,30,60,0.025) 0%, transparent 35%)
+          `,
+          }}
+        />
+      )}
+      {isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 30%, rgba(139,32,64,0.07) 0%, transparent 50%)",
+          }}
+        />
+      )}
 
-      {/* ══ Breathing background pulse ══ */}
-      <div
-        className="absolute inset-0 pointer-events-none breathe-glow"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 40%, rgba(212,175,55,0.04) 0%, transparent 50%)",
-        }}
-      />
+      {/* ══ Breathing background pulse — desktop only ══ */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none breathe-glow"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 40%, rgba(212,175,55,0.04) 0%, transparent 50%)",
+          }}
+        />
+      )}
 
-      {/* ══ Rotating Mandala Pattern — very subtle, hidden on mobile ══ */}
-      <div
-        className="absolute pointer-events-none mandala-spin hidden sm:block"
-        style={{
-          top: "50%",
-          left: "50%",
-          width: "140%",
-          height: "140%",
-          opacity: 0.04,
-        }}
-      >
-        <svg viewBox="0 0 1000 1000" fill="none" width="100%" height="100%">
-          {/* Outer ring of petals */}
-          {Array.from({ length: 24 }).map((_, i) => (
-            <g key={i} transform={`rotate(${i * 15} 500 500)`}>
-              <ellipse
-                cx="500"
-                cy="180"
-                rx="18"
-                ry="80"
-                fill="rgba(212,175,55,0.5)"
-                stroke="rgba(212,175,55,0.3)"
-                strokeWidth="0.5"
-              />
-            </g>
+      {/* ══ Twinkling stars — hidden on mobile for performance ══ */}
+      {!isMobile && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { x: "12%", y: "15%", d: "3s", del: "0s", s: 2 },
+            { x: "88%", y: "12%", d: "4s", del: "1.5s", s: 1.5 },
+            { x: "25%", y: "28%", d: "3.5s", del: "0.8s", s: 2.5 },
+            { x: "75%", y: "25%", d: "4.5s", del: "2s", s: 2 },
+            { x: "8%", y: "55%", d: "3s", del: "3s", s: 1.5 },
+            { x: "92%", y: "50%", d: "3.5s", del: "0.5s", s: 2 },
+          ].map((star, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                left: star.x,
+                top: star.y,
+                width: `${star.s}px`,
+                height: `${star.s}px`,
+                background:
+                  "radial-gradient(circle, rgba(212,175,55,0.9), rgba(212,175,55,0.3), transparent)",
+                animation: `twinkle ${star.d} ease-in-out ${star.del} infinite`,
+                boxShadow: "0 0 6px rgba(212,175,55,0.3)",
+              }}
+            />
           ))}
-          {/* Inner ring */}
-          {Array.from({ length: 16 }).map((_, i) => (
-            <g key={`inner-${i}`} transform={`rotate(${i * 22.5} 500 500)`}>
-              <ellipse
-                cx="500"
-                cy="280"
-                rx="12"
-                ry="55"
-                fill="rgba(142,56,85,0.3)"
-                stroke="rgba(142,56,85,0.2)"
-                strokeWidth="0.4"
-              />
-            </g>
-          ))}
-          {/* Center flower */}
-          {Array.from({ length: 12 }).map((_, i) => (
-            <g key={`center-${i}`} transform={`rotate(${i * 30} 500 500)`}>
-              <ellipse
-                cx="500"
-                cy="380"
-                rx="8"
-                ry="35"
-                fill="rgba(212,175,55,0.4)"
-              />
-            </g>
-          ))}
-          <circle
-            cx="500"
-            cy="500"
-            r="60"
-            stroke="rgba(212,175,55,0.3)"
-            strokeWidth="1"
-          />
-          <circle
-            cx="500"
-            cy="500"
-            r="120"
-            stroke="rgba(212,175,55,0.2)"
-            strokeWidth="0.5"
-          />
-          <circle
-            cx="500"
-            cy="500"
-            r="200"
-            stroke="rgba(142,56,85,0.15)"
-            strokeWidth="0.5"
-          />
-        </svg>
-      </div>
-
-      {/* ══ Twinkling stars ══ */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[
-          { x: "12%", y: "15%", d: "3s", del: "0s", s: 2 },
-          { x: "88%", y: "12%", d: "4s", del: "1.5s", s: 1.5 },
-          { x: "25%", y: "28%", d: "3.5s", del: "0.8s", s: 2.5 },
-          { x: "75%", y: "25%", d: "4.5s", del: "2s", s: 2 },
-          { x: "8%", y: "55%", d: "3s", del: "3s", s: 1.5 },
-          { x: "92%", y: "50%", d: "3.5s", del: "0.5s", s: 2 },
-        ].map((star, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              left: star.x,
-              top: star.y,
-              width: `${star.s}px`,
-              height: `${star.s}px`,
-              background:
-                "radial-gradient(circle, rgba(212,175,55,0.9), rgba(212,175,55,0.3), transparent)",
-              animation: `twinkle ${star.d} ease-in-out ${star.del} infinite`,
-              boxShadow: "0 0 6px rgba(212,175,55,0.3)",
-            }}
-          />
-        ))}
-      </div>
+        </div>
+      )}
 
       {/* Golden arch — signature editorial frame with glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <svg
           viewBox="0 0 500 700"
-          className="w-[88%] sm:w-[72%] md:w-[58%] lg:w-[46%] max-w-[540px] h-auto"
+          className="w-[72%] sm:w-[72%] md:w-[58%] lg:w-[46%] max-w-[540px] h-auto"
           fill="none"
         >
           {/* Outer glow arch */}
@@ -227,28 +174,28 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      {/* Floral corner decorations */}
+      {/* Floral corner decorations — smaller on mobile */}
       <FloralCorner
-        className="absolute top-2 left-0 sm:top-4 sm:left-2 pointer-events-none opacity-50 sm:opacity-70"
-        size={100}
+        className="absolute top-2 left-0 sm:top-4 sm:left-2 pointer-events-none opacity-35 sm:opacity-70"
+        size={isMobile ? 60 : 100}
       />
       <FloralCorner
-        className="absolute top-2 right-0 sm:top-4 sm:right-2 pointer-events-none opacity-50 sm:opacity-70"
-        size={100}
+        className="absolute top-2 right-0 sm:top-4 sm:right-2 pointer-events-none opacity-35 sm:opacity-70"
+        size={isMobile ? 60 : 100}
         flip
       />
       <FloralCorner
-        className="absolute bottom-2 left-0 sm:bottom-4 sm:left-2 pointer-events-none opacity-30 sm:opacity-45 rotate-180 -scale-x-100"
-        size={90}
+        className="absolute bottom-2 left-0 sm:bottom-4 sm:left-2 pointer-events-none opacity-20 sm:opacity-45 rotate-180 -scale-x-100"
+        size={isMobile ? 50 : 90}
       />
       <FloralCorner
-        className="absolute bottom-2 right-0 sm:bottom-4 sm:right-2 pointer-events-none opacity-30 sm:opacity-45 rotate-180"
-        size={90}
+        className="absolute bottom-2 right-0 sm:bottom-4 sm:right-2 pointer-events-none opacity-20 sm:opacity-45 rotate-180"
+        size={isMobile ? 50 : 90}
         flip
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-8 sm:px-12 md:px-16 pt-20 sm:pt-24 pb-10 max-w-3xl mx-auto w-full">
+      <div className="relative z-10 text-center px-6 sm:px-12 md:px-16 pt-14 sm:pt-24 pb-8 max-w-3xl mx-auto w-full">
         {/* Invocation */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -271,7 +218,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-10 sm:mb-12"
+          className="mb-6 sm:mb-12"
         >
           <span
             className="inline-flex items-center gap-2 px-8 py-2.5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.45em] text-gold/60 font-medium"
@@ -300,15 +247,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="flex items-center justify-center gap-8 sm:gap-12 mb-10 sm:mb-14"
+          className="flex items-center justify-center gap-6 sm:gap-12 mb-8 sm:mb-14"
         >
           {/* Bride */}
           <div className="relative group">
             <div
-              className="photo-frame-gold w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden flex items-center justify-center glow-pulse"
-              style={{
-                background: "linear-gradient(145deg, #181218, #06040A)",
-              }}
+              className="photo-frame-gold w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden flex items-center justify-center glow-pulse"
+              style={{ background: "var(--theme-photo-bg)" }}
             >
               {couple.bride.photo ? (
                 <img
@@ -317,7 +262,7 @@ export default function HeroSection() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-3xl sm:text-4xl md:text-5xl">👰</span>
+                <span className="text-4xl sm:text-4xl md:text-5xl">👰</span>
               )}
             </div>
             {/* <span
@@ -331,32 +276,37 @@ export default function HeroSection() {
             </span> */}
           </div>
 
-          {/* Romantic heart connector */}
+          {/* Romantic heart connector — static on mobile */}
           <div className="flex flex-col items-center gap-2">
             <div className="w-px h-6 bg-gradient-to-b from-transparent via-gold/12 to-transparent" />
-            <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
+            {isMobile ? (
               <Heart
-                className="w-5 h-5 sm:w-6 sm:h-6 text-rose-gold/35"
+                className="w-5 h-5 text-rose-gold/35"
                 fill="rgba(142,56,85,0.22)"
               />
-            </motion.div>
+            ) : (
+              <motion.div
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Heart
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-rose-gold/35"
+                  fill="rgba(142,56,85,0.22)"
+                />
+              </motion.div>
+            )}
             <div className="w-px h-6 bg-gradient-to-b from-transparent via-gold/12 to-transparent" />
           </div>
 
           {/* Groom */}
           <div className="relative group">
             <div
-              className="photo-frame-gold w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden flex items-center justify-center glow-pulse"
-              style={{
-                background: "linear-gradient(145deg, #181218, #06040A)",
-              }}
+              className="photo-frame-gold w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden flex items-center justify-center glow-pulse"
+              style={{ background: "var(--theme-photo-bg)" }}
             >
               {couple.groom.photo ? (
                 <img
@@ -365,7 +315,7 @@ export default function HeroSection() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-3xl sm:text-4xl md:text-5xl">🤵</span>
+                <span className="text-4xl sm:text-4xl md:text-5xl">🤵</span>
               )}
             </div>
             {/* <span
@@ -387,29 +337,26 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="px-2"
         >
-          <h2 className="font-script text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] gold-shimmer leading-relaxed">
+          <h2 className="font-script text-[2.25rem] sm:text-[2.75rem] md:text-[3.25rem] gold-shimmer leading-snug">
             {couple.bride.name}
           </h2>
-          <p className="telugu text-gold/50 text-xs sm:text-sm mt-1">
+          <p className="telugu text-gold/50 text-xs sm:text-sm mt-0.5">
             {couple.bride.nameTelugu}
           </p>
         </motion.div>
 
-        {/* Romantic & connector */}
+        {/* Romantic heart connector */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.6, type: "spring" }}
-          className="my-3 sm:my-4 flex items-center justify-center gap-4"
+          className="my-2 sm:my-4 flex items-center justify-center gap-4"
         >
           <div className="h-px w-16 bg-gradient-to-r from-transparent via-rose-gold/25 to-gold/25" />
-          <div className="flex items-center gap-2">
-            <SmallHeart className="w-2.5 h-2.5 text-rose-gold/40" />
-            <span className="font-script text-2xl sm:text-3xl text-gold/50">
-              &
-            </span>
-            <SmallHeart className="w-2.5 h-2.5 text-rose-gold/40" />
-          </div>
+          <Heart
+            className="w-6 h-6 sm:w-7 sm:h-7 text-rose-gold/50"
+            fill="rgba(142,56,85,0.35)"
+          />
           <div className="h-px w-16 bg-gradient-to-l from-transparent via-rose-gold/25 to-gold/25" />
         </motion.div>
 
@@ -420,10 +367,10 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.9 }}
           className="px-2"
         >
-          <h2 className="font-script text-[2rem] sm:text-[2.75rem] md:text-[3.25rem] gold-shimmer leading-relaxed">
+          <h2 className="font-script text-[2.25rem] sm:text-[2.75rem] md:text-[3.25rem] gold-shimmer leading-snug">
             {couple.groom.name}
           </h2>
-          <p className="telugu text-gold/50 text-xs sm:text-sm mt-1">
+          <p className="telugu text-gold/50 text-xs sm:text-sm mt-0.5">
             {couple.groom.nameTelugu}
           </p>
         </motion.div>
@@ -433,7 +380,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2.3 }}
-          className="mt-8 sm:mt-10 space-y-3"
+          className="mt-6 sm:mt-10 space-y-2 sm:space-y-3"
         >
           <p className="text-cream/65 text-[10px] sm:text-[11px] uppercase tracking-[0.45em] font-light">
             Request the honour of your presence
@@ -441,9 +388,9 @@ export default function HeroSection() {
           <p className="font-script text-lg sm:text-xl text-rose-gold/80 italic">
             at the celebration of our love
           </p>
-          <p className="telugu text-gold/55 text-xs sm:text-sm leading-relaxed">
+          {/* <p className="telugu text-gold/55 text-xs sm:text-sm leading-relaxed">
             మా ప్రేమ పెళ్ళికి మీకు హృదయపూర్వక ఆహ్వానం
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Ornament divider */}
@@ -452,7 +399,7 @@ export default function HeroSection() {
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 2.5 }}
         >
-          <OrnamentDivider className="my-8 sm:my-10" />
+          <OrnamentDivider className="my-6 sm:my-10" />
         </motion.div>
 
         {/* Countdown */}
@@ -462,8 +409,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 2.7 }}
         >
           <Countdown
-            targetDate={firstEvent.date}
-            label={`Countdown to ${firstEvent.title}`}
+            targetDate={nextEvent.date}
+            label={`Countdown to ${nextEvent.title}`}
           />
         </motion.div>
 
@@ -472,8 +419,8 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 3.2 }}
-          className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6"
-          style={{ marginTop: "2rem", padding: "20px" }}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6"
+          style={{ marginTop: "1.5rem", padding: "10px 0", paddingBottom: "0" }}
         >
           {[
             { label: "Bride's Family", family: couple.brideFamily },
@@ -481,12 +428,10 @@ export default function HeroSection() {
           ].map((side) => (
             <div
               key={side.label}
-              className="family-card relative p-7 sm:p-8 text-center rounded-2xl overflow-hidden group"
+              className="family-card relative p-5 sm:p-8 text-center rounded-2xl overflow-hidden group"
               style={{
-                background:
-                  "linear-gradient(155deg, rgba(24,18,24,0.8), rgba(10,7,12,0.95))",
-                boxShadow:
-                  "0 4px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(212,175,55,0.07), 0 0 70px rgba(142,56,85,0.015)",
+                background: "var(--theme-card-bg)",
+                boxShadow: "var(--theme-card-shadow)",
                 paddingBottom: "15px",
               }}
             >
@@ -521,30 +466,20 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 3.6 }}
-        // className="absolute bottom-0  left-1/2 -translate-x-1/2 z-100"
-        // style={{ marginTop: "1px" }}
+      {/* Scroll CTA — static on mobile to avoid infinite animation */}
+      <div
+        className="flex flex-col items-center gap-1.5 cursor-pointer group mt-4"
+        onClick={() =>
+          document
+            .getElementById("events")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
       >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1.5 cursor-pointer group"
-          onClick={() =>
-            document
-              .getElementById("events")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          <span className="text-[8px] uppercase tracking-[0.4em] text-gold/40 group-hover:text-gold/60 transition-colors">
-            Explore
-          </span>
-          <ChevronDown className="w-3.5 h-3.5 text-gold/35 group-hover:text-gold/55 transition-colors" />
-        </motion.div>
-      </motion.div>
+        <span className="text-[8px] uppercase tracking-[0.4em] text-gold/40 group-hover:text-gold/60 transition-colors">
+          Explore
+        </span>
+        <ChevronDown className="w-3.5 h-3.5 text-gold/35 group-hover:text-gold/55 transition-colors" />
+      </div>
     </section>
   );
 }

@@ -7,19 +7,19 @@ export const weddingConfig = {
   couple: {
     bride: {
       name: "Vallala Ujwala",
-      nameTelugu: "వల్లల ఉజ్వల",
+      nameTelugu: "",
       photo: null, // Add path: "/images/bride.jpg"
     },
     groom: {
       name: "Neelam Sai Revanth",
-      nameTelugu: "నీలం సాయి రేవంత్",
+      nameTelugu: "",
       photo: null, // Add path: "/images/groom.jpg"
     },
     // Parents — fill in when ready
     brideFamily: {
-      father: "Venkatesh",
+      father: "Vallala Venkatesh",
       fatherTelugu: "వెంకటేష్",
-      mother: "Sharadha",
+      mother: "Vallala Sharadha",
       motherTelugu: "శారద",
       gotram: "Gotram",
       gotramTelugu: "గోత్రం",
@@ -44,10 +44,10 @@ export const weddingConfig = {
       displayDate: "March 6th, 2026",
       displayDateTelugu: "మార్చి 6, 2026",
       time: "8:30 AM",
-      muhurtam: null,
+      muhurtam: "8:30 AM - 9:00 AM",
       venue: {
         name: "YSN Function Hall, Aler",
-        nameTelugu: "YSN ఫంక్షన్ హాల్, ఆలేరు",
+        nameTelugu: "",
         address:
           "YSN Function Hall, Aler, Yadadri Bhuvanagiri District, Telangana",
         mapUrl: "https://maps.app.goo.gl/UesVpj9KRoYyuiLB8",
@@ -72,12 +72,12 @@ export const weddingConfig = {
       displayDate: "April 2nd, 2026",
       displayDateTelugu: "ఏప్రిల్ 2, 2026",
       time: "8:00 PM",
-      muhurtam: null,
+      muhurtam: '8:00 PM - 8:30 PM',
       venue: {
-        name: "ANR Gardens, Aler",
-        nameTelugu: "ANR Gardens",
+        name: "ANR Gardens & Function Hall, Aler",
+        nameTelugu: "",
         address:
-          "ANR Gardens, Aler, Yadadri Bhuvanagiri District, Telangana",
+          "ANR Gardens & Function Hall, Aler, Yadadri Bhuvanagiri District, Telangana",
         mapUrl: "https://maps.app.goo.gl/rqLLB749z2XA8UKR8",
         lat: 17.6012,
         lng: 78.5928,
@@ -96,7 +96,7 @@ export const weddingConfig = {
         { name: "Saptapadi", nameTelugu: "సప్తపది", icon: "👣" },
       ],
       dressCode: "Traditional",
-      dressCodeTelugu: "సంప్రదాయ దుస్తులు",
+      dressCodeTelugu: "",
     },
 
     reception: {
@@ -110,9 +110,9 @@ export const weddingConfig = {
       time: "8:00 PM",
       muhurtam: null,
       venue: {
-        name: "VKR Convention Hall, Kalluru, Telangana",
-        nameTelugu: "VKR కన్వెన్షన్ హాల్",
-        address: "VKR Convention Hall, Telangana",
+        name: "VKR Convention Hall, Kalluru",
+        nameTelugu: "",
+        address: "VKR Convention Hall, Kalluru, Telangana",
         mapUrl: "https://maps.app.goo.gl/LbRECjonkrE1KQdx7",
         lat: 17.55,
         lng: 78.6,

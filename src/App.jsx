@@ -6,6 +6,7 @@ import FloatingPetals from "./components/Decorations/FloatingPetals";
 import GoldParticles from "./components/Decorations/GoldParticles";
 import CurtainReveal from "./components/CurtainReveal";
 import StageCurtains from "./components/StageCurtains";
+import ThemeToggle from "./components/ThemeToggle";
 
 /* Detect if the device is likely a mobile/low-power device */
 const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
@@ -30,11 +31,11 @@ function App() {
       {/* Curtain — covers everything until user opens */}
       {!curtainOpen && <CurtainReveal onOpen={() => setCurtainOpen(true)} />}
 
-      {/* Decorative particles — only after curtain opens to save perf */}
-      {curtainOpen && (
+      {/* Decorative particles — only after curtain opens, skip on mobile for perf */}
+      {curtainOpen && !isMobile && (
         <>
-          <FloatingPetals count={isMobile ? 6 : 14} />
-          <GoldParticles count={isMobile ? 8 : 18} />
+          <FloatingPetals count={14} />
+          <GoldParticles count={18} />
           <StageCurtains />
         </>
       )}
@@ -44,6 +45,7 @@ function App() {
         <EventsSection />
       </main>
       <Footer />
+      <ThemeToggle />
     </div>
   );
 }
